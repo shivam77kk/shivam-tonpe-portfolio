@@ -78,9 +78,11 @@ function NeuralScene() {
 
   return (
     <>
+      {/* @ts-ignore */}
       <fogExp2 attach="fog" color="#050508" density={0.008} />
       <points ref={pointsRef}>
         <bufferGeometry>
+          {/* @ts-ignore */}
           <bufferAttribute
             attach="attributes-position"
             count={particleCount}

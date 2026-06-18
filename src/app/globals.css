@@ -3,87 +3,291 @@
 @tailwind utilities;
 
 :root {
-  --font-hero:    clamp(3.5rem, 9vw, 8rem);
-  --font-display: clamp(2rem, 4.5vw, 3.75rem);
-  --font-title:   clamp(1.2rem, 2vw, 1.75rem);
-  --font-body:    1rem;
-  --font-small:   0.875rem;
-  --font-micro:   0.75rem;
-  
-  --tracking-hero:    -0.03em;
-  --tracking-heading: -0.02em;
-  --tracking-mono:     0.04em;
-  
-  --leading-tight:  1.1;
-  --leading-snug:   1.3;
-  --leading-normal: 1.6;
-  --leading-loose:  1.8;
+  /* SCALE — extreme contrast between sizes */
+  --text-hero:      clamp(4rem,   11vw,  9rem);
+  --text-display:   clamp(2.5rem, 5.5vw, 5rem);
+  --text-heading:   clamp(1.5rem, 2.5vw, 2.25rem);
+  --text-subhead:   clamp(1rem,   1.5vw, 1.375rem);
+  --text-body:      1rem;
+  --text-small:     0.875rem;
+  --text-micro:     0.75rem;
+  --text-nano:      0.6875rem;
+
+  /* LINE HEIGHT */
+  --leading-hero:   0.95;
+  --leading-display:1.05;
+  --leading-heading:1.2;
+  --leading-body:   1.7;
+  --leading-loose:  1.9;
+
+  /* LETTER SPACING */
+  --tracking-tightest: -0.05em;
+  --tracking-tight:    -0.03em;
+  --tracking-normal:   -0.01em;
+  --tracking-wide:      0.06em;
+  --tracking-widest:    0.12em;
+
+  /* SPACING RHYTHM */
+  --section-gap:     clamp(6rem, 12vw, 10rem);
+  --section-padding: clamp(4rem, 8vw, 7rem);
+  --content-gap-xl:  3rem;
+  --content-gap-lg:  2rem;
+  --content-gap-md:  1.25rem;
 }
 
-html { cursor: none; }
+html { cursor: none; scroll-behavior: smooth; }
 a, button, [role="button"] { cursor: none; }
 
+/* ─── NEURAL VOID THEME ─────────────────────────── */
 [data-theme="neural-void"] {
-  --bg-primary:    #050508;
-  --bg-surface:    #0A0A14;
-  --bg-elevated:   #12121F;
-  --accent-1:      #6C63FF;
-  --accent-2:      #00D4FF;
-  --accent-glow:   #A855F7;
-  --text-primary:  #F0F0FF;
-  --text-secondary: #8888AA;
-  --text-muted:    #44445A;
-  --card-border:   rgba(108, 99, 255, 0.18);
-  --card-glow:     rgba(108, 99, 255, 0.25);
+  --bg-abyss:     #020204;
+  --bg-primary:   #06060C;
+  --bg-surface:   #0C0C18;
+  --bg-elevated:  #141428;
+  --bg-float:     #1C1C38;
+  --bg-peak:      #242448;
+
+  --accent-1:      #7C6FFF;
+  --accent-2:      #22D3EE;
+  --accent-glow:   #A78BFA;
+  --accent-warm:   #FB923C;
+  --accent-success:#34D399;
+
+  --accent-1-10:  rgba(124, 111, 255, 0.10);
+  --accent-1-20:  rgba(124, 111, 255, 0.20);
+  --accent-1-30:  rgba(124, 111, 255, 0.30);
+  --accent-1-40:  rgba(124, 111, 255, 0.40);
+  --accent-1-65:  rgba(124, 111, 255, 0.65);
+  
+  --accent-2-10:  rgba(34, 211, 238, 0.10);
+  --accent-2-20:  rgba(34, 211, 238, 0.20);
+  --accent-2-30:  rgba(34, 211, 238, 0.30);
+
+  --text-primary:  #E8E8F0;
+  --text-secondary:#9090B0;
+  --text-tertiary: #5C5C80;
+  --text-ghost:    #2E2E50;
+  --text-accent:   #A78BFA;
+
+  --border-subtle: rgba(124, 111, 255, 0.08);
+  --border-mid:    rgba(124, 111, 255, 0.18);
+  --border-strong: rgba(124, 111, 255, 0.35);
+  --border-glass:  rgba(255, 255, 255, 0.06);
+
+  --gradient-hero:    linear-gradient(135deg, #7C6FFF 0%, #22D3EE 50%, #A78BFA 100%);
+  --gradient-card:    linear-gradient(135deg, rgba(124,111,255,0.08) 0%, rgba(34,211,238,0.04) 100%);
+  --gradient-text:    linear-gradient(90deg, #7C6FFF, #22D3EE);
+  --gradient-glow:    radial-gradient(ellipse at 50% 0%, rgba(124,111,255,0.15) 0%, transparent 70%);
+  --gradient-section: linear-gradient(180deg, transparent 0%, rgba(124,111,255,0.03) 50%, transparent 100%);
+
+  --shadow-card:   0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3), 0 0 0 1px var(--border-subtle);
+  --shadow-hover:  0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px var(--border-mid), 0 0 40px var(--accent-1-10);
+  --shadow-float:  0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px var(--border-glass), 0 0 80px var(--accent-1-10);
+  --shadow-glow:   0 0 20px var(--accent-1-20), 0 0 60px var(--accent-1-10);
+  --shadow-text:   0 0 30px var(--accent-1-40);
 }
 
+/* CYBER CYAN */
 [data-theme="cyber-cyan"] {
-  --bg-primary:    #020810;
-  --bg-surface:    #061420;
-  --bg-elevated:   #0A1E2E;
-  --accent-1:      #00FFFF;
-  --accent-2:      #0080FF;
-  --accent-glow:   #00BFFF;
-  --text-primary:  #E0F8FF;
-  --text-secondary: #6699BB;
-  --text-muted:    #334455;
-  --card-border:   rgba(0, 255, 255, 0.15);
-  --card-glow:     rgba(0, 255, 255, 0.2);
+  --bg-abyss:     #01080E;
+  --bg-primary:   #030D18;
+  --bg-surface:   #061826;
+  --bg-elevated:  #0A2438;
+  --bg-float:     #0E304A;
+  --bg-peak:      #123C5C;
+  --accent-1:     #06B6D4;
+  --accent-2:     #3B82F6;
+  --accent-glow:  #67E8F9;
+  --accent-warm:  #F59E0B;
+  --accent-success:#10B981;
+  
+  --accent-1-10:  rgba(6, 182, 212, 0.10);
+  --accent-1-20:  rgba(6, 182, 212, 0.20);
+  --accent-1-30:  rgba(6, 182, 212, 0.30);
+  --accent-1-40:  rgba(6, 182, 212, 0.40);
+  --accent-1-65:  rgba(6, 182, 212, 0.65);
+  
+  --accent-2-10:  rgba(59, 130, 246, 0.10);
+  --accent-2-20:  rgba(59, 130, 246, 0.20);
+  --accent-2-30:  rgba(59, 130, 246, 0.30);
+
+  --text-primary:  #E8E8F0;
+  --text-secondary:#9090B0;
+  --text-tertiary: #5C5C80;
+  --text-ghost:    #2E2E50;
+  --text-accent:   #A78BFA;
+
+  --border-subtle: rgba(6, 182, 212, 0.08);
+  --border-mid:    rgba(6, 182, 212, 0.18);
+  --border-strong: rgba(6, 182, 212, 0.35);
+  --border-glass:  rgba(255, 255, 255, 0.06);
+
+  --gradient-text: linear-gradient(90deg, #06B6D4, #3B82F6);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(6,182,212,0.15) 0%, transparent 70%);
+  --gradient-card: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(59,130,246,0.04) 100%);
+  --gradient-section: linear-gradient(180deg, transparent 0%, rgba(6,182,212,0.03) 50%, transparent 100%);
 }
 
+/* MATRIX GREEN */
 [data-theme="matrix-green"] {
-  --bg-primary:    #020802;
-  --bg-surface:    #061406;
-  --bg-elevated:   #0A1E0A;
-  --accent-1:      #00FF41;
-  --accent-2:      #39FF14;
-  --accent-glow:   #00CC33;
-  --text-primary:  #CCFFCC;
-  --text-secondary: #558855;
-  --text-muted:    #224422;
-  --card-border:   rgba(0, 255, 65, 0.15);
-  --card-glow:     rgba(0, 255, 65, 0.2);
+  --bg-abyss:     #010601;
+  --bg-primary:   #030D03;
+  --bg-surface:   #051605;
+  --bg-elevated:  #082108;
+  --bg-float:     #0C2C0C;
+  --bg-peak:      #103810;
+  --accent-1:     #22C55E;
+  --accent-2:     #86EFAC;
+  --accent-glow:  #4ADE80;
+  --accent-warm:  #F59E0B;
+  --accent-success:#10B981;
+
+  --accent-1-10:  rgba(34, 197, 94, 0.10);
+  --accent-1-20:  rgba(34, 197, 94, 0.20);
+  --accent-1-30:  rgba(34, 197, 94, 0.30);
+  --accent-1-40:  rgba(34, 197, 94, 0.40);
+  --accent-1-65:  rgba(34, 197, 94, 0.65);
+  
+  --accent-2-10:  rgba(134, 239, 172, 0.10);
+  --accent-2-20:  rgba(134, 239, 172, 0.20);
+  --accent-2-30:  rgba(134, 239, 172, 0.30);
+
+  --text-primary:  #E8E8F0;
+  --text-secondary:#9090B0;
+  --text-tertiary: #5C5C80;
+  --text-ghost:    #2E2E50;
+  --text-accent:   #A78BFA;
+
+  --border-subtle: rgba(34, 197, 94, 0.08);
+  --border-mid:    rgba(34, 197, 94, 0.18);
+  --border-strong: rgba(34, 197, 94, 0.35);
+  --border-glass:  rgba(255, 255, 255, 0.06);
+
+  --gradient-text: linear-gradient(90deg, #22C55E, #86EFAC);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(34,197,94,0.15) 0%, transparent 70%);
+  --gradient-card: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(134,239,172,0.04) 100%);
+  --gradient-section: linear-gradient(180deg, transparent 0%, rgba(34,197,94,0.03) 50%, transparent 100%);
 }
 
+/* AURORA PURPLE */
 [data-theme="aurora-purple"] {
-  --bg-primary:    #080510;
-  --bg-surface:    #100A1E;
-  --bg-elevated:   #180F2A;
-  --accent-1:      #C084FC;
-  --accent-2:      #F0ABFC;
-  --accent-glow:   #E879F9;
-  --text-primary:  #F5F0FF;
-  --text-secondary: #9980CC;
-  --text-muted:    #4A3D66;
-  --card-border:   rgba(192, 132, 252, 0.18);
-  --card-glow:     rgba(192, 132, 252, 0.25);
+  --bg-abyss:     #04030C;
+  --bg-primary:   #080512;
+  --bg-surface:   #100A1E;
+  --bg-elevated:  #19112E;
+  --bg-float:     #23193E;
+  --bg-peak:      #2D2150;
+  --accent-1:     #A855F7;
+  --accent-2:     #E879F9;
+  --accent-glow:  #D946EF;
+  --accent-warm:  #F59E0B;
+  --accent-success:#10B981;
+
+  --accent-1-10:  rgba(168, 85, 247, 0.10);
+  --accent-1-20:  rgba(168, 85, 247, 0.20);
+  --accent-1-30:  rgba(168, 85, 247, 0.30);
+  --accent-1-40:  rgba(168, 85, 247, 0.40);
+  --accent-1-65:  rgba(168, 85, 247, 0.65);
+  
+  --accent-2-10:  rgba(232, 121, 249, 0.10);
+  --accent-2-20:  rgba(232, 121, 249, 0.20);
+  --accent-2-30:  rgba(232, 121, 249, 0.30);
+
+  --text-primary:  #E8E8F0;
+  --text-secondary:#9090B0;
+  --text-tertiary: #5C5C80;
+  --text-ghost:    #2E2E50;
+  --text-accent:   #A78BFA;
+
+  --border-subtle: rgba(168, 85, 247, 0.08);
+  --border-mid:    rgba(168, 85, 247, 0.18);
+  --border-strong: rgba(168, 85, 247, 0.35);
+  --border-glass:  rgba(255, 255, 255, 0.06);
+
+  --gradient-text: linear-gradient(90deg, #A855F7, #E879F9);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.15) 0%, transparent 70%);
+  --gradient-card: linear-gradient(135deg, rgba(168,85,247,0.08) 0%, rgba(232,121,249,0.04) 100%);
+  --gradient-section: linear-gradient(180deg, transparent 0%, rgba(168,85,247,0.03) 50%, transparent 100%);
 }
 
+/* ── ROOT BACKGROUND SYSTEM ─────────────────────────────────── */
 body {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-abyss);
   color: var(--text-primary);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 120% 80% at 50% -10%, var(--accent-1-10) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 110%, var(--accent-2-10) 0%, transparent 60%);
+  background-attachment: fixed;
+  background-size: 256px 256px, 100% 100%, 100% 100%;
   transition: background-color 0.5s ease, color 0.5s ease;
   font-family: var(--font-space), 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+section:nth-child(even) {
+  background: var(--gradient-section);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dot-grid-bg {
+  background-image: radial-gradient(circle, var(--accent-1-10) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-1-20) 50%, transparent 100%);
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* ── GRADIENT TEXT UTILITY ──────────────────────────────────── */
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── GHOST HEADING (decorative, behind real heading) ─────────── */
+.ghost-heading {
+  position: absolute;
+  font-size: clamp(6rem, 15vw, 14rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tightest);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border-subtle);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  top: -0.3em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* ── SECTION LABEL — the "// 01 · ABOUT" pill ───────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: var(--text-nano);
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: var(--accent-2-10);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
 }
 
 ::-webkit-scrollbar {

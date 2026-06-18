@@ -35,6 +35,7 @@ const QUERY = `
               contributionCount
               date
               color
+              weekday
             }
           }
         }

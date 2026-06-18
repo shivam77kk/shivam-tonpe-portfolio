@@ -5,6 +5,7 @@ import { GlowCard } from "@/components/ui/GlowCard";
 import { PERSONAL_INFO, openEmail, WHATSAPP_URL } from "@/lib/constants";
 import { Mail, MessageCircle, Linkedin, Github, Copy, Check, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -67,9 +68,12 @@ export function ContactSection() {
             onClick={openEmail}
           >
             <CopyButton text={PERSONAL_INFO.email} />
-            <div className="w-12 h-12 rounded-xl bg-[var(--bg-surface)] flex items-center justify-center mb-6 text-[var(--accent-1)] group-hover:scale-110 transition-transform">
-              <Mail size={24} />
-            </div>
+            <motion.div
+              className="w-12 h-12 rounded-2xl bg-[var(--accent-1-10)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 group-hover:bg-[var(--accent-1-20)] transition-colors duration-300"
+              whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
+            >
+              <Mail size={22} className="text-[var(--accent-1)]" />
+            </motion.div>
             <h3 className="text-xl font-space font-bold text-[var(--text-primary)] mb-2">Email Me</h3>
             <p className="font-mono text-[var(--text-secondary)] mb-6">{PERSONAL_INFO.email}</p>
             <div className="text-sm font-space font-bold text-[var(--accent-1)] group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">
@@ -83,9 +87,12 @@ export function ContactSection() {
             target="_blank"
             className="p-8 cursor-pointer group block"
           >
-            <div className="w-12 h-12 rounded-xl bg-[var(--bg-surface)] flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
-              <MessageCircle size={24} />
-            </div>
+            <motion.div
+              className="w-12 h-12 rounded-2xl bg-[var(--accent-success)]/10 border border-[var(--border-subtle)] flex items-center justify-center mb-4 group-hover:bg-[var(--accent-success)]/20 transition-colors duration-300"
+              whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
+            >
+              <MessageCircle size={22} className="text-[var(--accent-success)]" />
+            </motion.div>
             <h3 className="text-xl font-space font-bold text-[var(--text-primary)] mb-2">WhatsApp</h3>
             <p className="font-mono text-[var(--text-secondary)] mb-6">{PERSONAL_INFO.phone}</p>
             <div className="text-sm font-space font-bold text-green-400 group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">
@@ -99,9 +106,12 @@ export function ContactSection() {
             target="_blank"
             className="p-8 cursor-pointer group block"
           >
-            <div className="w-12 h-12 rounded-xl bg-[var(--bg-surface)] flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
-              <Linkedin size={24} />
-            </div>
+            <motion.div
+              className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-[var(--border-subtle)] flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors duration-300"
+              whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
+            >
+              <Linkedin size={22} className="text-blue-500" />
+            </motion.div>
             <h3 className="text-xl font-space font-bold text-[var(--text-primary)] mb-2">LinkedIn</h3>
             <p className="font-mono text-[var(--text-secondary)] mb-6">shivam-tonpe</p>
             <div className="text-sm font-space font-bold text-blue-400 group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">
@@ -115,9 +125,12 @@ export function ContactSection() {
             target="_blank"
             className="p-8 cursor-pointer group block"
           >
-            <div className="w-12 h-12 rounded-xl bg-[var(--bg-surface)] flex items-center justify-center mb-6 text-[var(--accent-2)] group-hover:scale-110 transition-transform">
-              <Github size={24} />
-            </div>
+            <motion.div
+              className="w-12 h-12 rounded-2xl bg-[var(--accent-2-10)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 group-hover:bg-[var(--accent-2-20)] transition-colors duration-300"
+              whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
+            >
+              <Github size={22} className="text-[var(--accent-2)]" />
+            </motion.div>
             <h3 className="text-xl font-space font-bold text-[var(--text-primary)] mb-2">GitHub</h3>
             <p className="font-mono text-[var(--text-secondary)] mb-6">shivam77kk</p>
             <div className="text-sm font-space font-bold text-[var(--accent-2)] group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">

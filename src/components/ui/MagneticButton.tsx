@@ -1,53 +1,59 @@
-"use client";
-
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+'use client';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useRef, ReactNode } from 'react';
 
 interface MagneticButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
+  strength?: number;  // 0.3 default = 30% of mouse offset applied
   className?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
 }
 
-export function MagneticButton({ children, className, onClick, variant = "primary" }: MagneticButtonProps) {
+export function MagneticButton({
+  children,
+  strength = 0.3,
+  className,
+  onClick,
+}: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const handleMouse = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const springConfig = { stiffness: 200, damping: 20 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
+
+  // Inner content moves LESS than outer button (parallax feel)
+  const innerX = useTransform(x, v => v * 0.4);
+  const innerY = useTransform(y, v => v * 0.4);
+
+  function onMouseMove(e: React.MouseEvent) {
     if (!ref.current) return;
-    const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current.getBoundingClientRect();
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
-  };
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set((e.clientX - centerX) * strength);
+    mouseY.set((e.clientY - centerY) * strength);
+  }
 
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-  };
-
-  const baseStyle = "relative px-8 py-4 rounded-full font-space font-bold text-sm tracking-wide transition-all duration-300 flex items-center justify-center overflow-hidden group";
-  
-  const variants = {
-    primary: "bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] text-white shadow-lg shadow-[var(--accent-glow)]/20 hover:shadow-[var(--accent-glow)]/40",
-    secondary: "bg-transparent border border-[var(--card-border)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)] hover:border-[var(--accent-1)]"
-  };
+  function onMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
 
   return (
     <motion.button
       ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={`${baseStyle} ${variants[variant]} ${className || ''}`}
+      className={className}
+      style={{ x, y }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      whileTap={{ scale: 0.94 }}
       onClick={onClick}
     >
-      <span className="relative z-10 flex items-center gap-2">{children}</span>
-      {variant === 'primary' && (
-        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-      )}
+      <motion.span style={{ x: innerX, y: innerY }} className="block">
+        {children}
+      </motion.span>
     </motion.button>
   );
 }

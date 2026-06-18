@@ -55,6 +55,7 @@ function DNA() {
       ))}
       <lineSegments>
         <bufferGeometry>
+          {/* @ts-ignore */}
           <bufferAttribute 
             attach="attributes-position"
             count={linePositions.length / 3}

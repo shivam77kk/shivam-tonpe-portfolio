@@ -5,6 +5,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { Code2, Rocket, Award, Star } from "lucide-react";
 
 export function TimelineSection() {
   const lineRef = useRef(null);
@@ -31,8 +33,9 @@ export function TimelineSection() {
     {
       period: "JULY 2026",
       title: "Sensei Ultra",
-      status: "● BUILDING",
+      status: "BUILDING",
       statusColor: "text-green-500",
+      icon: Code2,
       role: "Full Stack AI Developer",
       tags: ["LangGraph.js", "Next.js 15", "Gemini", "MongoDB", "Socket.io", "Flutter"],
       desc: "Adaptive campus automation platform for Indian universities"
@@ -40,8 +43,9 @@ export function TimelineSection() {
     {
       period: "2025",
       title: "Edu-Ultra",
-      status: "✓ SHIPPED",
-      statusColor: "text-blue-400",
+      status: "SHIPPED",
+      statusColor: "text-[var(--accent-1)]",
+      icon: Rocket,
       role: "Full Stack Developer",
       tags: ["Gemini API", "LangGraph.js", "React", "Node.js", "YouTube API"],
       desc: "AI learning hub — YouTube → study packs in 30 seconds"
@@ -49,8 +53,9 @@ export function TimelineSection() {
     {
       period: "2024",
       title: "Trivo (Jhaad-Lagao-Bidhu)",
-      status: "✓ SHIPPED (Hackathon)",
-      statusColor: "text-[var(--accent-1)]",
+      status: "SHIPPED (Hackathon)",
+      statusColor: "text-[var(--accent-2)]",
+      icon: Star,
       role: "Full Stack Developer",
       tags: ["Groq", "OpenWeather", "Three.js", "Express", "Gemini"],
       desc: "Climate-based AI plant recommendation for reforestation"
@@ -58,8 +63,9 @@ export function TimelineSection() {
     {
       period: "2024",
       title: "Invento Competition",
-      status: "🥈 2ND PRIZE",
+      status: "2ND PRIZE",
       statusColor: "text-yellow-400",
+      icon: Award,
       role: "Participant — Sahyog College",
       tags: ["Award", "Competition"],
       desc: "Won 2nd Prize at Sahyog College's Invento tech competition"
@@ -83,8 +89,14 @@ export function TimelineSection() {
             {entries.map((entry, i) => {
               const isEven = i % 2 === 0;
               return (
-                <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-[var(--bg-elevated)] border-2 border-[var(--accent-1)] -translate-x-1/2 shadow-[0_0_15px_var(--accent-glow)] z-10" />
+                <div key={i} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row-reverse' : ''} group`}>
+                  <motion.div 
+                    className={`absolute left-6 md:left-1/2 w-10 h-10 rounded-xl bg-[var(--bg-elevated)] border-2 border-transparent flex items-center justify-center -translate-x-1/2 shadow-[0_0_20px_rgba(0,0,0,0.5)] z-10 transition-colors duration-500 ${entry.statusColor}`}
+                    style={{ borderColor: 'currentColor' }}
+                    whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0], transition: { duration: 0.5 } }}
+                  >
+                    <entry.icon size={18} />
+                  </motion.div>
                   
                   <div className="hidden md:block w-1/2" />
 
