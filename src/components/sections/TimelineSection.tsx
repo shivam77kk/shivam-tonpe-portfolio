@@ -29,7 +29,7 @@ export function TimelineSection() {
 
   const entries = [
     {
-      period: "NOW — 2025",
+      period: "JULY 2026",
       title: "Sensei Ultra",
       status: "● BUILDING",
       statusColor: "text-green-500",
@@ -38,7 +38,7 @@ export function TimelineSection() {
       desc: "Adaptive campus automation platform for Indian universities"
     },
     {
-      period: "2024",
+      period: "2025",
       title: "Edu-Ultra",
       status: "✓ SHIPPED",
       statusColor: "text-blue-400",
