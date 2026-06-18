@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 
 const QUERY = `
-  query PinnedRepos($username: String!) {
+  query LatestRepos($username: String!) {
     user(login: $username) {
-      pinnedItems(first: 6, types: REPOSITORY) {
+      recentRepositories: repositories(first: 6, orderBy: {field: PUSHED_AT, direction: DESC}, privacy: PUBLIC, isFork: false) {
         nodes {
           ... on Repository {
             id
@@ -67,7 +67,7 @@ export async function GET() {
     if (errors) throw new Error(errors[0].message);
 
     return NextResponse.json({
-      repos: data.user.pinnedItems.nodes,
+      repos: data.user.recentRepositories.nodes,
       calendar: data.user.contributionsCollection.contributionCalendar,
       stats: {
         totalCommits: data.user.contributionsCollection.totalCommitContributions,
