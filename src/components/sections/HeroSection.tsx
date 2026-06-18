@@ -120,7 +120,7 @@ export function HeroSection() {
               </span>
             </MagneticButton>
             
-            <MagneticButton className="group px-6 py-3 rounded-full bg-transparent text-[var(--text-primary)] font-medium border border-[var(--border-mid)] backdrop-blur-md hover:bg-[var(--accent-1-10)] hover:border-[var(--border-strong)] transition-all" onClick={() => window.open('/assets/resume.pdf', '_blank')}>
+            <MagneticButton className="group px-6 py-3 rounded-full bg-transparent text-[var(--text-primary)] font-medium border border-[var(--border-mid)] backdrop-blur-md hover:bg-[var(--accent-1-10)] hover:border-[var(--border-strong)] transition-all" onClick={() => window.open('/Shivam_Tonpe_Resume.pdf', '_blank')}>
               <span className="flex items-center gap-2">
                 Download Resume <Download size={16} className="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors" />
               </span>
